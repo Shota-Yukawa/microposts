@@ -146,13 +146,13 @@ class User extends Authenticatable
     
     
     
-     /**
-     * このユーザに関係するモデルの件数をロードする。
-     */
-    public function loadRelationshipCounts()
-    {
-        $this->loadCount(['microposts', 'followings', 'followers']);
-    }
+    //  /**
+    //  * このユーザに関係するモデルの件数をロードする。
+    //  */
+    // public function loadRelationshipCounts()
+    // {
+    //     $this->loadCount(['microposts', 'followings', 'followers']);
+    // }
     
     
     
@@ -202,7 +202,15 @@ class User extends Authenticatable
     {
         return $this->favorites()->where('micropost_id', $micropostId)->exists();
     }
-    
+   
+   
+     /**
+     * このユーザに関係するモデルの件数をロードする。
+     */
+    public function loadRelationshipCounts()
+    {
+        $this->loadCount(['microposts', 'followings', 'followers', 'favorites']);
+    }
     
 }
 

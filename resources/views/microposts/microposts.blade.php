@@ -14,12 +14,37 @@
                         {{-- 投稿内容 --}}
                         <p class="mb-0">{!! nl2br(e($micropost->content)) !!}</p>
                     </div>
-                    <div>
+                    <div class="conteiner">
                         @if (Auth::id() == $micropost->user_id)
-                            {{-- 投稿削除ボタンのフォーム --}}
-                            {!! Form::open(['route' => ['microposts.destroy', $micropost->id], 'method' => 'delete']) !!}
-                                {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
-                            {!! Form::close() !!}
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    @if (Auth::user()->now_favorite($micropost->id))
+                                        {!! form::open(['route' => ['favorites.unfavorite', $micropost->id], 'method' => 'delete']) !!}
+                                            {!! form::submit('Unfavorite', ['class' => 'btn btn-danger btn-sm favorite-buttun']) !!}
+                                        {!! Form::close() !!}
+                                    @else
+                                        {!! form::open(['route' => ['favorites.favorite', $micropost->id]]) !!}
+                                            {!! form::submit('Favorite', ['class' => 'btn btn-success btn-sm favorite-buttun']) !!}
+                                        {!!Form::close() !!}
+                                    @endif
+                                </div>
+                                <div class="col-lg-2">
+                                    {{-- 投稿削除ボタンのフォーム --}}
+                                    {!! Form::open(['route' => ['microposts.destroy', $micropost->id], 'method' => 'delete']) !!}
+                                        {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
+                                    {!! Form::close() !!}
+                                </div>
+                            </div>
+                        @else
+                             @if (Auth::user()->now_favorite($micropost->id))
+                                {!! form::open(['route' => ['favorites.unfavorite', $micropost->id], 'method' => 'delete']) !!}
+                                    {!! form::submit('Unfavorite', ['class' => 'btn btn-denger btn-sm favorite-buttun']) !!}
+                                {!! Form::close() !!}
+                            @else
+                                {!! form::open(['route' => ['favorites.favorite', $micropost->id]]) !!}
+                                    {!! form::submit('Favorite', ['class' => 'btn btn-success btn-sm favorite-buttun']) !!}
+                                {!!Form::close() !!}
+                             @endif
                         @endif
                     </div>
                 </div>
