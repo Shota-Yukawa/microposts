@@ -19,12 +19,12 @@
                             <div class="row">
                                 <div class="col-lg-2">
                                     @if (Auth::user()->now_favorite($micropost->id))
-                                        {!! form::open(['route' => ['favorites.unfavorite', $micropost->id], 'method' => 'delete']) !!}
-                                            {!! form::submit('Unfavorite', ['class' => 'btn btn-danger btn-sm favorite-buttun']) !!}
+                                        {!! Form::open(['route' => ['favorites.unfavorite', $micropost->id], 'method' => 'delete']) !!}
+                                            {!! Form::submit('Unfavorite', ['class' => 'btn btn-secondary btn-sm']) !!}
                                         {!! Form::close() !!}
                                     @else
-                                        {!! form::open(['route' => ['favorites.favorite', $micropost->id]]) !!}
-                                            {!! form::submit('Favorite', ['class' => 'btn btn-success btn-sm favorite-buttun']) !!}
+                                        {!! Form::open(['route' => ['favorites.favorite', $micropost->id]]) !!}
+                                            {!! Form::submit('Favorite', ['class' => 'btn btn-success btn-sm']) !!}
                                         {!!Form::close() !!}
                                     @endif
                                 </div>
@@ -37,12 +37,12 @@
                             </div>
                         @else
                              @if (Auth::user()->now_favorite($micropost->id))
-                                {!! form::open(['route' => ['favorites.unfavorite', $micropost->id], 'method' => 'delete']) !!}
-                                    {!! form::submit('Unfavorite', ['class' => 'btn btn-denger btn-sm favorite-buttun']) !!}
+                                {!! Form::open(['route' => ['favorites.unfavorite', $micropost->id], 'method' => 'delete']) !!}
+                                    {!! Form::submit('Unfavorite', ['class' => 'btn btn-secondary btn-sm']) !!}
                                 {!! Form::close() !!}
                             @else
-                                {!! form::open(['route' => ['favorites.favorite', $micropost->id]]) !!}
-                                    {!! form::submit('Favorite', ['class' => 'btn btn-success btn-sm favorite-buttun']) !!}
+                                {!! Form::open(['route' => ['favorites.favorite', $micropost->id]]) !!}
+                                    {!! Form::submit('Favorite', ['class' => 'btn btn-success btn-sm']) !!}
                                 {!!Form::close() !!}
                              @endif
                         @endif
